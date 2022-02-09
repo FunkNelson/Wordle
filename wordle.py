@@ -1,8 +1,13 @@
 import random
 
 #answer = "pants"
-library = ["pants", "siren", "dumpy", "clear", "proxy", "knoll", "moist", "junky", "burst", "octal", "rinse", "human","after", "pinto", "roach", "login", "under", "purse", "uncle", "crime", "couch", "flute", "lotus", "whale"]
+#library = ["pants", "siren", "dumpy", "clear", "proxy", "knoll", "moist", "junky", "burst", "octal", "rinse", "human","after", "pinto", "roach", "login", "under", "purse", "uncle", "crime", "couch", "flute", "lotus", "whale"]
+library = []
 
+with open("fiveletters.txt") as libfile:
+    for line in libfile:
+        library.append( line.rstrip( "\n" ).lower() )
+libfile.close()
 
 def get_answer(library):
 	index = random.randint(0, len(library)-1)
@@ -34,11 +39,11 @@ def compare_word(answer, guess):
 
 def guess_word():
 	guess = raw_input("Guess a word: ")
-	print print_word(compare_word(answer, guess))
+	print print_word(compare_word(answer, guess.lower()))
 	
-
 answer = get_answer(library)
-	
+#print answer
+
 print print_word("?????")
 
 turn = 0
