@@ -22,6 +22,13 @@ def get_answer(library):
     answer = library[index]
     return answer
 
+def print_logo():
+    with open("gnomefarts_logo.txt") as logo:
+        for line in logo:
+            print line,
+    print "\n\n"
+    logo.close()
+
 def update_the_unguessed(word):
     global qwerty_one
     global qwerty_two
@@ -97,7 +104,7 @@ def guess_word():
 
 answer = get_answer(library)
 #print answer
-
+print_logo()
 #print_word("_____")
 turn = 0
 while ( turn < ( wordlength + 1 ) ):
