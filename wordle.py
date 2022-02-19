@@ -76,71 +76,61 @@ def print_guess_history(guess_list):
         print guess
 
 def compare_word(answer, guess):
-	output_string = ""
-	i = 0
-	while i < wordlength:
-		if guess[i] in answer:
-			if guess[i] == answer[i]:
+    output_string = ""
+    i = 0
+    while i < wordlength:
+        if guess[i] in answer:
+            if guess[i] == answer[i]:
                 #print "hit!"
-				output_string += guess[i]
-			else:
+                output_string += guess[i]
+            else:
                 #print "partial hit!"
-				output_string += guess[i].upper()
-		else:
-            #print "miss!"
-			output_string += "_"
-		i += 1
-	return output_string
+                output_string += guess[i].upper()
+            else:
+                #print "miss!"
+                output_string += "_"
+        i += 1
+    return output_string
 
 def guess_word():
-	
-	guess = "0"
-	while (not guess.isalpha() or len(guess) != wordlength):
-		guess = raw_input("Guess a word: ").lower()	
-		
-	the_guess_list.append(guess)
-	update_the_unguessed(guess)
-
+    guess = "0"
+    while (not guess.isalpha() or len(guess) != wordlength):
+        guess = raw_input("Guess a word: ").lower()	
+    the_guess_list.append(guess)
+    update_the_unguessed(guess)
 
 def take_turn():
-	global turn
-	global is_correct
-	
-	# Toggle this turn to clear screen each turn #
-	if turn != 0:
-		os.system('clear')
-	
-	print_guess_history(the_guess_list)
-	print_empty_word()
-	print_the_unguessed()
-	print "\n - Turn", turn + 1, " -"
-	guess_word()
+    global turn
+    global is_correct
 
-	
-	if the_guess_list[-1].strip() == answer.strip():
-		is_correct = True
-		print "\nHooray you are a winnar!!!\n"
-	
-	turn += 1
-	
-	if turn == 6:
-		os.system('clear')
-		print_guess_history(the_guess_list)
-	return 
+    # Toggle this turn to clear screen each turn #
+    if turn != 0:
+        os.system('clear')
 
+    print_guess_history(the_guess_list)
+    print_empty_word()
+    print_the_unguessed()
+    print "\n - Turn", turn + 1, " -"
+    guess_word()
 
-	
+    if the_guess_list[-1].strip() == answer.strip():
+        is_correct = True
+        print "\nHooray you are a winnar!!!\n"
+
+    turn += 1
+
+    if turn == 6:
+        os.system('clear')
+        print_guess_history(the_guess_list)
+    return 
+
 #---------  Game logic ----------------
 
 answer = get_answer(library)
 print_logo()
 
-
-
 while ( turn < ( wordlength + 1 ) and is_correct == False ):	
-	take_turn()
-	
-
+    take_turn()
 
 print_word(answer.strip())	
 print "\n"
