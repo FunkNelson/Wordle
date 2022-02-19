@@ -86,16 +86,16 @@ def compare_word(answer, guess):
             else:
                 #print "partial hit!"
                 output_string += guess[i].upper()
-            else:
-                #print "miss!"
-                output_string += "_"
+        else:
+            #print "miss!"
+            output_string += "_"
         i += 1
     return output_string
 
 def guess_word():
     guess = "0"
     while (not guess.isalpha() or len(guess) != wordlength):
-        guess = raw_input("Guess a word: ").lower()	
+        guess = raw_input("Guess a word: ").lower()
     the_guess_list.append(guess)
     update_the_unguessed(guess)
 
